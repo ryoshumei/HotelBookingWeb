@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1 class="title">My hotel booking system</h1>
+<p>This is a hotel booking demo</p>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>NAME</th>
+    <th>ROOM NUMBER</th>
+    <th>AGE</th>
+    <th>GENDER</th>
+    <th>CHECK_IN</th>
+    <th>CHECK_OUT</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="guest : ${guestsList}" >
+    <th th:text="${guest.id}">(id)</th>
+    <th th:text="${guest.name}">(name)</th>
+    <th th:text="${guest.roomNum}">(roomNum)</th>
+    <th th:text="${guest.age}">(age)</th>
+    <th th:text="${guest.gender}">(gender)</th>
+    <th th:text="${guest.checkInDate}">(checkin_date)</th>
+    <th th:text="${guest.checkOutDate}">(checkout_date)</th>
+
+  </tr>
+
+  </tbody>
+</table>
+
+
+</body>
+</html>

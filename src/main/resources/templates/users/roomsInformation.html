@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Title</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body class="container">
+<h1 class="title">My hotel booking system</h1>
+<p>This is a hotel booking demo</p>
+
+<div>
+  <label th:text="'CheckIn : ' + ${date.checkInDate}">(checkin)</label>
+  <label th:text="'CheckOut : ' + ${date.checkOutDate}">(checkout)</label>
+  <label th:text="'Travelers : ' + ${date.numOfPeople}">(Travelers)</label>
+</div>
+
+
+<div class="all-rooms mt-5" th:each="floor : ${roomList}">
+  <!--Each row in Floors-->
+  <div class="row row-cols-1 row-cols-md-6 g-4">
+
+    <div class="col-sm-6 mb-3 mb-sm-0" th:each="room : ${floor}">
+      <div class="card" style="width: 10rem;">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${room.roomNum}">(Room Number)</h5>
+          <h6 class="card-text" th:text="${room.roomType} + 'Room'">(Room Type)</h6>
+          <h6 class="card-text" th:text="'MaxCapacity : ' + ${room.roomCapacity}">(Room Capacity)</h6>
+          <a th:class="${room.isAvailable}? 'btn btn-primary' : 'btn btn-secondary disabled'"
+             th:href="@{/roomsInformation
+             (roomNum=${room.roomNum},
+             checkInDate=${date.checkInDate},
+             checkOutDate=${date.checkOutDate},
+             numOfPeople=${date.numOfPeople},
+             )}"
+             href="./guestBookingForm.html"
+             class="btn btn-primary">Book this room</a>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

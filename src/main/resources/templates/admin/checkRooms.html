@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1 class="title">My hotel booking system</h1>
+<p>This is a hotel booking demo</p>
+
+<!--5 Columns tables-->
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>ROOM NUMBER</th>
+    <th>FLOOR</th>
+    <th>ROOM TYPE</th>
+    <th>ROOM CAPACITY</th>
+    <th>IS AVAILABLE</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="room : ${roomsList}" >
+    <th th:text="${room.id}">(id)</th>
+    <th th:text="${room.roomNum}">(roomNum)</th>
+    <th th:text="${room.floor}">(floor)</th>
+    <th th:text="${room.roomType}">(roomType)</th>
+    <th th:text="${room.roomCapacity}">(roomCapacity)</th>
+    <th th:text="${room.isAvailable}">(isAvailable)</th>
+
+  </tr>
+
+  </tbody>
+</table>
+
+
+</body>
+</html>
