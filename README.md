@@ -1,6 +1,10 @@
 # HotelBookingWeb
 A HotelBooking WebApp with SpringBoot,Mysql &amp; Mybatis ,html&amp;Bootstrap
 
+## Update
+2023-02-19
+Added FormValidation in FrontEnd with Javascript.
+
 ## Environment
 
 
