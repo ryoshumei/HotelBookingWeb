@@ -87,13 +87,16 @@
         // Loop over them and prevent submission
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
-                age = document.getElementById('age').value
-
-
                 form.querySelectorAll('.form-control').forEach(function(element){
-                    if(element.value.length == 0 || isNaN(age)){
-                        element.classList.add('is-invalid')
+                    age = document.getElementById('age')
+                    if(isNaN(age.value)){
+                        age.classList.add('is-invalid')
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
 
+                    if(element.value.length == 0){
+                        element.classList.add('is-invalid')
                         event.preventDefault()
                         event.stopPropagation()
                     } else {
