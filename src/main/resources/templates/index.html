@@ -11,15 +11,18 @@
 <h1 class="title">My hotel booking system</h1>
 <p>This is a hotel booking demo</p>
 
-<form action="#" th:action="@{/}" th:method="post" th:object="${inputDateForm}" class="row g-2 align-items-center">
+<form action="#" th:action="@{/}" th:method="post" th:object="${inputDateForm}" class="row g-2 align-items-center needs-validation" novalidate>
 
         <div class="col-auto">
             <label for="check_in" class="col-form-label">Check in:</label>
             <input type="date" id="check_in" name="input_check_in"
                    class="form-control"
                    th:field="*{checkInDate}"
-                   value="2023-02-12"
+
                    min="2000-01-01" max="2030-12-31">
+            <div class="invalid-feedback">
+                Invalid Date.
+            </div>
         </div>
 
         <div class="col-auto">
@@ -27,8 +30,11 @@
             <input type="date" id="check_out" name="input_check_out"
                    class="form-control"
                    th:field="*{checkOutDate}"
-                   value="2023-02-12"
+
                    min="2000-01-01" max="2030-12-31">
+            <div class="invalid-feedback">
+                Invalid Date.
+            </div>
         </div>
 
         <div class="col-auto ">
@@ -42,11 +48,38 @@
         <div class="col-auto ms-5 mt-5">
             <button type="submit" class="btn btn-primary">Search</button>
         </div>
-
-
-
-
 </form>
+
+<script>
+    // JavaScript for checking form if there are invalid fields
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                //compare if checkin > checkout
+                var checkInDate = Date.parse(document.getElementById('check_in').value)
+                var checkOutDate = Date.parse(document.getElementById('check_out').value)
+
+
+                form.querySelectorAll('.form-control').forEach(function(element){
+                    if(element.value.length == 0 || checkInDate > checkOutDate){
+                        element.classList.add('is-invalid')
+                        event.preventDefault()
+                        event.stopPropagation()
+                    } else {
+                        element.classList.add('is-valid')
+                        element.classList.remove('is-invalid')
+                    }
+                })
+            }, false)
+        })
+    })()
+</script>
 
 
 

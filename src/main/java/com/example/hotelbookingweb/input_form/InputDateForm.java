@@ -1,5 +1,6 @@
 package com.example.hotelbookingweb.input_form;
 
+
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -8,8 +9,6 @@ import java.time.LocalDate;
 public class InputDateForm {
 
     private LocalDate checkInDate;
-
     private LocalDate checkOutDate;
-
     private int numOfPeople;
 }
