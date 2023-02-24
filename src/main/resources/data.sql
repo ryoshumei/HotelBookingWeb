@@ -1,4 +1,5 @@
 --init guest data for test
+
 INSERT INTO guesttable
 (name, room_num,age,gender,check_in_date,check_out_date)
 VALUES
@@ -32,3 +33,12 @@ VALUES
 ( 403,4,'Twin',2,true),
 ( 404,4,'Twin',2,true)
 ;
+
+INSERT INTO admin_table
+(admin_id, password, role)
+VALUES
+('test1', '$2a$10$gvVycTto9jDbcjtLt63wLe/rdUsCs4KsLcRpgq10YaVnQ7aO/eNYi','ADMIN'), -- password is 'test1'
+('test2','$2a$10$NIyt6w1JECx9kLHQTaNnc.IOPpE./OrHh4UEaevyyZO04/N1Ibw.y','ADMIN')  -- password is 'test2'
+;
+
+

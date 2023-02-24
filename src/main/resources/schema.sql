@@ -1,6 +1,7 @@
 --if exist, then delete
 DROP TABLE IF EXISTS guesttable;
 DROP TABLE IF EXISTS roomtable;
+DROP TABLE IF EXISTS admin_table;
 
 --create new guesttable if not exist
 CREATE TABLE IF NOT EXISTS guesttable(
@@ -23,6 +24,14 @@ floor INT NOT NULL,
 room_type VARCHAR(50),
 room_capacity INT NOT NULL,
 is_available BOOLEAN,
+PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS admin_table(
+id INT AUTO_INCREMENT,
+admin_id VARCHAR(256) NOT NULL, --ID for login
+password VARCHAR(128) NOT NULL,   -- Hashed password
+role VARCHAR(128) NOT NULL,
 PRIMARY KEY(id)
 );
 
