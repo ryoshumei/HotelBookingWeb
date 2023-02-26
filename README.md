@@ -6,7 +6,7 @@ A HotelBooking WebApp with SpringBoot,Mysql &amp; Mybatis ,html&amp;Bootstrap
 Added buttons for admin pages for accessing between checkGuests&checkRooms pages
 
 2023-02-24<br>
-Added SpringSecurity with LoginForm.
+Added SpringSecurity with LoginForm(Admin Login Page).
 Added 2 admin testcase with hashed password in database:<br>
 Plz use testcases below to access admin pages. 
 Admin ID : test1  Password: test1 <br>
