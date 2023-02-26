@@ -42,9 +42,23 @@
   </tbody>
 </table>
 
-<form method="post" action="index.html" th:action="@{/admin/logout}">
-  <button type="submit" class="btn btn-primary">LogOut</button>
-</form>
+
+
+
+<div class="row">
+  <div class="col">
+    <form method="get" action="index.html" th:action="@{/admin/checkRooms}">
+      <button type="submit" class="btn btn-primary mb-3">CheckRooms</button>
+    </form>
+  </div>
+  <div class="col">
+    <form class="text-md-end" method="post" action="index.html" th:action="@{/admin/logout}">
+      <button type="submit" class="btn btn-danger">LogOut</button>
+    </form>
+  </div>
+</div>
+
+
 
 
 </body>
