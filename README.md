@@ -11,6 +11,8 @@ Added 2 admin testcase with hashed password in database:<br>
 Plz use testcases below to access admin pages. 
 Admin ID : test1  Password: test1 <br>
 Admin ID : test2  Password: test2 <br>
+Admin login page are : <br>
+"http://localhost:8090/admin" <br>
 Admin pages are : <br>
 "http://localhost:8090/admin/checkGuests" <br>
 "http://localhost:8090/admin/checkRooms" <br>
