@@ -2,6 +2,10 @@
 A HotelBooking WebApp with SpringBoot,Mysql &amp; Mybatis ,html&amp;Bootstrap
 
 ## Update
+
+2023-03-01<br>
+Added BookingComplete page
+
 2023-02-26<br>
 Added buttons for admin pages for accessing between checkGuests&checkRooms pages
 
@@ -77,7 +81,7 @@ Caution: database will be reset every time you run this project because of the q
 
 #### Complete
 
-<img src="./images_for_readme/3.png">
+<img src="./images_for_readme/booking_complete.png">
 
 ### Check room_database and guests_database as an admin via browser.
 

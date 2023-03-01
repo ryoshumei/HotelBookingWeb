@@ -23,13 +23,15 @@ public class RoomInfoController {
 
 
     @PostMapping("/roomsInformation/confirmBooking")
-    @ResponseBody
+    //@ResponseBody
     public String confirmBooking(Model model, @ModelAttribute BookingForm bookingForm){
 
         bookingService.create(bookingForm);
         System.out.println(bookingForm);
 
-        return "Complete   :    <br>" + bookingForm.toString();
+        model.addAttribute("bookingCompleteInfo",bookingForm);
+        return "users/bookingComplete";
+        //return "Complete   :    <br>" + bookingForm.toString();
     }
 
     @GetMapping("/roomsInformation")
