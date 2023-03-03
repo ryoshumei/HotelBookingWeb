@@ -11,6 +11,8 @@
 <h1 class="title">My hotel booking system</h1>
 <p>This is a hotel booking demo</p>
 
+<p class="text-danger" th:text="${hasConflict}? 'Something went wrong , Please try again.' : ''"></p>
+
 <form action="#" th:action="@{/}" th:method="post" th:object="${inputDateForm}" class="row g-2 align-items-center needs-validation" novalidate>
 
         <div class="col-auto">

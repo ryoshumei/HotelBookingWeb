@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,8 +25,15 @@ public class indexController {
     private final GuestsService guestsService;
 
     @GetMapping("/")
-    public String index(@ModelAttribute InputDateForm inputDateForm, Model model) {
+    public String index(@ModelAttribute InputDateForm inputDateForm, Model model, RedirectAttributes redirectAttributes) {
+        boolean hasConflict = false;
+        if(redirectAttributes.getFlashAttributes().get("hasConflict") != null){
+            hasConflict =(boolean) redirectAttributes.getFlashAttributes().get("hasConflict");
+        }
 
+        if(hasConflict){
+            model.addAttribute("hasConflict", true);
+        }
 
         return "index";
     }
