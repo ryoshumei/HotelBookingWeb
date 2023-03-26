@@ -1,7 +1,11 @@
 # HotelBookingWeb
-A HotelBooking WebApp with SpringBoot,Mysql &amp; Mybatis ,html&amp;Bootstrap
+A HotelBooking WebApp with SpringBoot,Mysql &amp; Mybatis ,html,css,javascript&amp;Bootstrap
 
 ## Update
+
+2023-03-26<br>
+Version2.0
+Updated FrontEnd
 
 2023-03-01<br>
 Added BookingComplete page
@@ -37,12 +41,16 @@ Added FormValidation in FrontEnd with Javascript.
 
 #### FrontEnd & UI : 
 html5<br>
+css3<br>
+JavaScript<br>
 Bootstrap<br>
 Template Engine : Thymeleaf
 
 #### BackEnd :
 Java with Springboot version '3.0.2'<br>
-Mybatis
+Spring MVC<br>
+Spring Security<br>
+Mybatis<br>
 Server: Tomcat in springboot
 
 #### Database
@@ -72,11 +80,15 @@ Caution: database will be reset every time you run this project because of the q
 
 <img src="./images_for_readme/1-1.png">
 
-#### Select an available room and enter guest information
+#### Select an available room and check more details
 
 <img src="./images_for_readme/2.png">
 
 <img src="./images_for_readme/2-1.png">
+
+#### Enter guest information
+
+<img src="./images_for_readme/2-2.png">
 
 
 #### Complete
