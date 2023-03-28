@@ -20,7 +20,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class indexController {
+public class IndexController {
     private final RoomsService roomsService;
     private final GuestsService guestsService;
 
@@ -38,7 +38,7 @@ public class indexController {
         return "index";
     }
 
-    @PostMapping("/")
+    @PostMapping("/")//todo : convert to GetMapping
     public String searchRooms(@ModelAttribute InputDateForm inputDateForm, Model model){
         //System.out.println(inputDateForm.getCheckInDate());
         //System.out.println(inputDateForm.getCheckOutDate());
