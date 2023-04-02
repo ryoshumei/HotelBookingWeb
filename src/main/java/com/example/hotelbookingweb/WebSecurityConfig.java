@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 
 
-// A Basic Authentication
+// A Form Authentication
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
