@@ -1,12 +1,10 @@
 package com.example.hotelbookingweb.controllers.users;
 
 import com.example.hotelbookingweb.entities.GuestEntity;
-import com.example.hotelbookingweb.entities.RoomEntity;
 import com.example.hotelbookingweb.input_form.BookingForm;
 import com.example.hotelbookingweb.input_form.InputDateForm;
 import com.example.hotelbookingweb.services.BookingService;
 import com.example.hotelbookingweb.services.GuestsService;
-import com.example.hotelbookingweb.services.RoomsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,18 +12,20 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class RoomInfoController {
+
+    public static final String ROOMS_INFORMATION_PATH = "/roomsInformation";
+    public static final String CONFIRM_BOOKING_PATH = "/roomsInformation/confirmBooking";
+
     private final BookingService bookingService;
     private final GuestsService guestsService;
 
 
-    @PostMapping("/roomsInformation/confirmBooking")
+    @PostMapping(CONFIRM_BOOKING_PATH)
     public String confirmBooking(Model model, @ModelAttribute BookingForm bookingForm, RedirectAttributes redirectAttributes){
         if(checkIsAvailable(bookingForm)){
             bookingService.create(bookingForm);
@@ -40,7 +40,7 @@ public class RoomInfoController {
         return "users/bookingComplete";
     }
 
-    @GetMapping("/roomsInformation")
+    @GetMapping(ROOMS_INFORMATION_PATH)
     public String showRooms(@RequestParam("checkInDate") String checkInDate,
                             @RequestParam("checkOutDate") String checkOutDate,
                             @RequestParam("roomNum") int roomNum,

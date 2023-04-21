@@ -18,19 +18,19 @@
     z-index: 1;
 }
 
-.two_buttons{
-    display: flex;
-    flex-direction: row;
+.check_detail_btn{
+    /*display: flex;*/
+    /*flex-direction: row;*/
     z-index: 2;
 }
 
 #book{
-    display: none;
+    /*display: none;*/
 }
 
 .card.active #book{
-    display: block;
-    margin-left: 600px;
+    /*display: block;*/
+    /*margin-left: 600px;*/
 }
 
 .card.active .room_content{
@@ -48,12 +48,13 @@
 .card.active .card_content{
     display: none;
 }
-.card.active .two_buttons{
-    position: fixed;
-    top: 50%;
-    left: 30%;
+.card.active .check_detail_btn{
+    /*position: fixed;*/
+    /*top: 50%;*/
+    /*left: 30%;*/
 
-    transform: translateY(230px);
+    /*transform: translateY(230px);*/
+    display: none;
 }
 
 .card.active #check_detail{

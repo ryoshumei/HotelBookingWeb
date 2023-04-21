@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class LoginController {
 
-    @GetMapping("/admin/logIn")
+    public static final String LOGIN_PATH = "/admin/logIn";
+
+    @GetMapping(LOGIN_PATH)
     String login() {
         return "admin/logIn";
     }

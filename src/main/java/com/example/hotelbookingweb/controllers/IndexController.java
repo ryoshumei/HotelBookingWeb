@@ -20,11 +20,14 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class indexController {
+public class IndexController {
+
+    public static final String HOME_PATH = "/";
+
     private final RoomsService roomsService;
     private final GuestsService guestsService;
 
-    @GetMapping("/")
+    @GetMapping(HOME_PATH)
     public String index(@ModelAttribute InputDateForm inputDateForm, Model model, RedirectAttributes redirectAttributes) {
         boolean hasConflict = false;
         if(redirectAttributes.getFlashAttributes().get("hasConflict") != null){
@@ -38,7 +41,7 @@ public class indexController {
         return "index";
     }
 
-    @PostMapping("/")
+    @PostMapping(HOME_PATH)//todo : convert to GetMapping
     public String searchRooms(@ModelAttribute InputDateForm inputDateForm, Model model){
         //System.out.println(inputDateForm.getCheckInDate());
         //System.out.println(inputDateForm.getCheckOutDate());
