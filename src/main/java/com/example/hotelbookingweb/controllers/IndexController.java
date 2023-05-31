@@ -33,7 +33,6 @@ public class IndexController {
         if(redirectAttributes.getFlashAttributes().get("hasConflict") != null){
             hasConflict =(boolean) redirectAttributes.getFlashAttributes().get("hasConflict");
         }
-
         if(hasConflict){
             model.addAttribute("hasConflict", true);
         }
@@ -51,7 +50,6 @@ public class IndexController {
         List<List<RoomEntity>> floors;
 
         List<RoomEntity> rooms = roomsService.findAllRooms();
-
         rooms = checkIsAvailable(rooms,inputDateForm);
 
         //Divide list by floor
@@ -110,14 +108,12 @@ public class IndexController {
 
         }
         // if traveler > room_max_capacity set it false
-        for(int i = 0; i < rooms.size(); i++){
-            if(inputDateForm.getNumOfPeople() > rooms.get(i).getRoomCapacity()){
-                rooms.get(i).setAvailable(false);
-            }
-        }
-
+//        for(int i = 0; i < rooms.size(); i++){
+//            if(inputDateForm.getNumOfPeople() > rooms.get(i).getRoomCapacity()){
+//                rooms.get(i).setAvailable(false);
+//            }
+//        }
         return rooms;
-
     }
 
     private boolean isDateOverlap(InputDateForm inputDateForm, GuestEntity guests) {
@@ -130,6 +126,4 @@ public class IndexController {
         }
         return res;
     }
-
-
 }

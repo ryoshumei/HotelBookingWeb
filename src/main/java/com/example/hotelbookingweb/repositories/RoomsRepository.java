@@ -8,6 +8,6 @@ import java.util.List;
 
 @Mapper
 public interface RoomsRepository {
-    @Select("select * from my_hotel_web.roomtable")
+    @Select("select * from my_hotel_web.room_table")
     List<RoomEntity> findAllRooms();
 }

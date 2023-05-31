@@ -15,7 +15,7 @@
 <div>
   <label th:text="'CheckIn : ' + ${date.checkInDate}">(checkin)</label>
   <label th:text="'CheckOut : ' + ${date.checkOutDate}">(checkout)</label>
-  <label th:text="'Travelers : ' + ${date.numOfPeople}">(Travelers)</label>
+<!--  <label th:text="'Travelers : ' + ${date.numOfPeople}">(Travelers)</label>-->
 </div>
 
 
@@ -42,8 +42,7 @@
                  th:href="@{/roomsInformation
                  (roomNum=${room.roomNum},
                  checkInDate=${date.checkInDate},
-                 checkOutDate=${date.checkOutDate},
-                 numOfPeople=${date.numOfPeople},
+                 checkOutDate=${date.checkOutDate}
                  )}"
                  href="guestBookingForm.html"
                  class="btn btn-primary btn-lg " id="book">Book

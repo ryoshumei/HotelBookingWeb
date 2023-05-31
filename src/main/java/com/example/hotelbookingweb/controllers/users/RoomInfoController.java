@@ -44,7 +44,7 @@ public class RoomInfoController {
     public String showRooms(@RequestParam("checkInDate") String checkInDate,
                             @RequestParam("checkOutDate") String checkOutDate,
                             @RequestParam("roomNum") int roomNum,
-                            @RequestParam("numOfPeople") int numOfPeople,
+                            @RequestParam(value = "numOfPeople",required = false) int numOfPeople,
                             Model model,
                             @ModelAttribute InputDateForm inputDateForm,
                             @ModelAttribute BookingForm bookingForm){
@@ -52,7 +52,7 @@ public class RoomInfoController {
 
         inputDateForm.setCheckInDate(LocalDate.parse(checkInDate));
         inputDateForm.setCheckOutDate(LocalDate.parse(checkOutDate));
-        inputDateForm.setNumOfPeople(numOfPeople);
+        //inputDateForm.setNumOfPeople(numOfPeople);
 
 
         //test
@@ -63,7 +63,7 @@ public class RoomInfoController {
         */
         //end test
 
-        model.addAttribute("numOfPeople", numOfPeople);
+        //model.addAttribute("numOfPeople", numOfPeople);
         model.addAttribute("date", inputDateForm);
         model.addAttribute("roomNum", roomNum);
 

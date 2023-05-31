@@ -16,7 +16,6 @@ import java.time.LocalDate;
 
 import static com.example.hotelbookingweb.controllers.users.RoomInfoController.CONFIRM_BOOKING_PATH;
 import static com.example.hotelbookingweb.controllers.users.RoomInfoController.ROOMS_INFORMATION_PATH;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -49,7 +48,7 @@ class RoomInfoControllerTest {
     @Test
     void showRooms() throws Exception {
 
-        InputDateForm inputDateForm = new InputDateForm(LocalDate.of(2023,3,28),LocalDate.of(2023,4,2),2);
+        InputDateForm inputDateForm = new InputDateForm(LocalDate.of(2023,3,28),LocalDate.of(2023,4,2));
 
         String checkInDate = inputDateForm.getCheckInDate().toString();
 

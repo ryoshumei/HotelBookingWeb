@@ -14,7 +14,6 @@ import java.util.List;
 public class GuestsService {
     private final GuestsRepository guestsRepository;
 
-
     public List<GuestEntity> findAllGuests(){
         return guestsRepository.findAllGuests();
     }
