@@ -68,7 +68,42 @@ Default port is 8090 in this project, you can also change it in "application.pro
 "src/main/resources/data.sql" includes guest&room testcase, you can edit/remove it according to your needs. .
 
 Caution: database will be reset every time you run this project because of the query statement in "src/main/resources/schema.sql", you can edit/remove it according to your needs. <br>
-
+## Database
+```mermaid
+erDiagram
+    guest_table ||--o{ order_table : ""
+    order_table ||--|| room_table : ""
+    guest_table {
+        int id PK
+        string name
+        int age
+        int gender
+    }
+    order_table{
+        int id PK
+        int guest_id FK
+        int room_id FK
+        enum payment "paid/unpaid"
+        int price
+        date check_in_date
+        date check_out_date
+    }
+    room_table {
+        int id PK
+        int room_num
+        int floor
+        int price
+        string room_type
+        int room_capacity
+        boolean is_available
+    }
+    admin_table {
+        int id PK
+        string admin_id
+        string password
+        string role
+    }
+```
 
 ## Features
 
