@@ -15,8 +15,8 @@ public interface GuestsRepository {
     @Select("select * from my_hotel_web.guest_table")
     List<GuestEntity> findAllGuests();
 
-    @Insert("insert into my_hotel_web.guest_table (name, room_num, age, gender, check_in_date, check_out_date) VALUES (#{name}, #{roomNum}, #{age}, #{gender}, #{checkInDate}, #{checkOutDate})")
-    void insert(String name, int roomNum, Integer age, int gender, LocalDate checkInDate, LocalDate checkOutDate);
+    @Insert("INSERT INTO my_hotel_web.guest_table (name, age, gender) VALUES (#{name}, #{age}, #{gender})")
+    void insertGuest(String name, Integer age, int gender);
 
     @Delete("delete from my_hotel_web.guest_table where id = #{id}")
     void deleteById(int id);

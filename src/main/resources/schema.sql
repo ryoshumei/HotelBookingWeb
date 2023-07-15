@@ -5,40 +5,44 @@ DROP TABLE IF EXISTS admin_table;
 DROP TABLE IF EXISTS order_table;
 
 -- create new guest_table if not exist
-CREATE TABLE IF NOT EXISTS guest_table
+CREATE TABLE guest_table
 (
-    id             INT AUTO_INCREMENT,
-    name           VARCHAR(50) NOT NULL,
-    room_num       INT         NOT NULL,
-    age            INT         NOT NULL,
-    gender         INT         NOT NULL,
-    check_in_date  DATE        NOT NULL,
-    check_out_date DATE        NOT NULL,
-    PRIMARY KEY (id)
+    id     INT AUTO_INCREMENT PRIMARY KEY,
+    name   VARCHAR(255),
+    age    INT,
+    gender INT
 );
 
-
-
-CREATE TABLE IF NOT EXISTS room_table
+CREATE TABLE room_table
 (
-    id            INT AUTO_INCREMENT,
-    room_num      INT NOT NULL,
-    floor         INT NOT NULL,
-    room_type     VARCHAR(50),
-    room_capacity INT NOT NULL,
-    is_available  BOOLEAN,
-    PRIMARY KEY (id)
--- todo : Add a fk indicate guest_table.id many to many
-
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    room_num      INT,
+    floor         INT,
+    price         INT,
+    room_type     VARCHAR(255),
+    room_capacity INT,
+    is_available  BOOLEAN
 );
 
-CREATE TABLE IF NOT EXISTS admin_table
+CREATE TABLE order_table
 (
-    id       INT AUTO_INCREMENT,
-    admin_id VARCHAR(256) NOT NULL, -- ID for login
-    password VARCHAR(128) NOT NULL, -- Hashed password
-    role     VARCHAR(128) NOT NULL,
-    PRIMARY KEY (id)
+    id             INT AUTO_INCREMENT PRIMARY KEY,
+    guest_id       INT,
+    room_id        INT,
+    payment        ENUM ('paid', 'unpaid'),
+    price          INT,
+    check_in_date  DATE,
+    check_out_date DATE,
+    FOREIGN KEY (guest_id) REFERENCES guest_table (id),
+    FOREIGN KEY (room_id) REFERENCES room_table (id)
+);
+
+CREATE TABLE admin_table
+(
+    id       INT AUTO_INCREMENT PRIMARY KEY,
+    admin_id VARCHAR(255),
+    password VARCHAR(255),
+    role     VARCHAR(255)
 );
 
 

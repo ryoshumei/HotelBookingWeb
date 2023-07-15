@@ -14,12 +14,11 @@ public class BookingService {
 
     @Transactional
     public void create(BookingForm bookingForm) {
-        guestsRepository.insert(
+        guestsRepository.insertGuest(
+                //todo refactor fix
                 bookingForm.getName(),
-                bookingForm.getRoomNum(),
                 bookingForm.getAge(),
-                bookingForm.getGender(),
-                bookingForm.getCheckInDate(),
-                bookingForm.getCheckOutDate());
+                bookingForm.getGender()
+        );
     }
 }

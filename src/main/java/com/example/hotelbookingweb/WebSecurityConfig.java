@@ -25,12 +25,9 @@ public class WebSecurityConfig {
                 .defaultSuccessUrl("/admin/checkGuests")
                 .failureUrl("/")
                 .permitAll()
-
         ).logout(logout -> logout
                 .logoutUrl("/admin/logout")
                 .logoutSuccessUrl("/admin/logIn")
-
-
         ).authorizeHttpRequests(authz -> authz
                 .requestMatchers("/css/**")
                 .permitAll()
@@ -48,8 +45,6 @@ public class WebSecurityConfig {
                 .hasRole("ADMIN")
                 .anyRequest().authenticated()
         );
-
-
         return http.build();
     }
 

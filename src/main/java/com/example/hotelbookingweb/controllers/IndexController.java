@@ -42,13 +42,8 @@ public class IndexController {
 
     @PostMapping(HOME_PATH)//todo : convert to GetMapping
     public String searchRooms(@ModelAttribute InputDateForm inputDateForm, Model model){
-        //System.out.println(inputDateForm.getCheckInDate());
-        //System.out.println(inputDateForm.getCheckOutDate());
-        //System.out.println(inputDateForm.getNumOfPeople());
-
 
         List<List<RoomEntity>> floors;
-
         List<RoomEntity> rooms = roomsService.findAllRooms();
         rooms = checkIsAvailable(rooms,inputDateForm);
 
@@ -97,7 +92,7 @@ public class IndexController {
 
         for(int i = 0; i < guests.size(); i++){
             if(isDateOverlap(inputDateForm,guests.get(i))){
-                //done : find room and setAvailable false
+                //todo : find room and setAvailable false
                 int tempRoomNum = guests.get(i).getRoomNum();
                 for(int j = 0; j < rooms.size(); j++){
                     if(tempRoomNum == rooms.get(j).getRoomNum()){
@@ -107,12 +102,6 @@ public class IndexController {
             }
 
         }
-        // if traveler > room_max_capacity set it false
-//        for(int i = 0; i < rooms.size(); i++){
-//            if(inputDateForm.getNumOfPeople() > rooms.get(i).getRoomCapacity()){
-//                rooms.get(i).setAvailable(false);
-//            }
-//        }
         return rooms;
     }
 

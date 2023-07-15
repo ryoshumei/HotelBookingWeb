@@ -12,8 +12,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class GuestsService {
-    private final GuestsRepository guestsRepository;
 
+    private final GuestsRepository guestsRepository;
     public List<GuestEntity> findAllGuests(){
         return guestsRepository.findAllGuests();
     }
