@@ -1,10 +1,12 @@
 package com.example.hotelbookingweb.controllers.users;
 
 import com.example.hotelbookingweb.entities.GuestEntity;
+import com.example.hotelbookingweb.entities.OrderEntity;
 import com.example.hotelbookingweb.input_form.BookingForm;
 import com.example.hotelbookingweb.input_form.InputDateForm;
 import com.example.hotelbookingweb.services.BookingService;
 import com.example.hotelbookingweb.services.GuestsService;
+import com.example.hotelbookingweb.services.OrdersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ public class RoomInfoController {
 
     private final BookingService bookingService;
     private final GuestsService guestsService;
+    private final OrdersService ordersService;
 
 
     @PostMapping(CONFIRM_BOOKING_PATH)
@@ -71,10 +74,11 @@ public class RoomInfoController {
     }
 
     private boolean checkIsAvailable(BookingForm bookingForm){
-        List<GuestEntity> guests = guestsService.findAllGuests();
+        List<OrderEntity> orders = ordersService.findAllOrders();
 
-        for(int i = 0; i < guests.size(); i++){
-            if(bookingForm.getRoomNum() == guests.get(i).getRoomNum() && isDateOverlap(bookingForm,guests.get(i))){
+        for(int i = 0; i < orders.size(); i++){
+            //todo convert roomId to roomNum
+            if(bookingForm.getRoomNum() == orders.get(i).getRoomId() && isDateOverlap(bookingForm,orders.get(i))){
                 return false;
             }
 
@@ -83,9 +87,9 @@ public class RoomInfoController {
 
     }
 
-    private boolean isDateOverlap(BookingForm inputDateForm, GuestEntity guests) {
+    private boolean isDateOverlap(BookingForm inputDateForm, OrderEntity order) {
         boolean res;
-        if(inputDateForm.getCheckInDate().compareTo(guests.getCheckOutDate()) < 0 && guests.getCheckInDate().compareTo(inputDateForm.getCheckOutDate()) < 0){
+        if(inputDateForm.getCheckInDate().compareTo(order.getCheckOutDate()) < 0 && order.getCheckInDate().compareTo(inputDateForm.getCheckOutDate()) < 0){
             //then overlap
             res = true;
         } else {

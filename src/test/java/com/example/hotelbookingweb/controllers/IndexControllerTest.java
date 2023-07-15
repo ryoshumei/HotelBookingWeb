@@ -24,7 +24,6 @@ import java.util.List;
 
 import static com.example.hotelbookingweb.controllers.IndexController.HOME_PATH;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 

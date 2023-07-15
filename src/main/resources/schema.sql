@@ -1,8 +1,9 @@
 -- if exist, then delete
+DROP TABLE IF EXISTS order_table;
 DROP TABLE IF EXISTS guest_table;
 DROP TABLE IF EXISTS room_table;
 DROP TABLE IF EXISTS admin_table;
-DROP TABLE IF EXISTS order_table;
+
 
 -- create new guest_table if not exist
 CREATE TABLE guest_table

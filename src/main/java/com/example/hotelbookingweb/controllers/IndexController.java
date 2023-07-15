@@ -92,12 +92,12 @@ public class IndexController {
 
     private List<RoomEntity> checkIsAvailable(List<RoomEntity> rooms, InputDateForm inputDateForm){
 
-        List<OrderEntity> orders = .findAllGuests();
+        List<OrderEntity> orders = ordersService.findAllOrders();
 
-        for(int i = 0; i < guests.size(); i++){
-            if(isDateOverlap(inputDateForm,guests.get(i))){
+        for(int i = 0; i < orders.size(); i++){
+            if(isDateOverlap(inputDateForm,orders.get(i))){
                 //todo : find room and setAvailable false
-                int tempRoomNum = guests.get(i).getRoomNum();
+                int tempRoomNum = orders.get(i).getRoomId();
                 for(int j = 0; j < rooms.size(); j++){
                     if(tempRoomNum == rooms.get(j).getRoomNum()){
                         rooms.get(j).setAvailable(false);
@@ -109,9 +109,10 @@ public class IndexController {
         return rooms;
     }
 
-    private boolean isDateOverlap(InputDateForm inputDateForm, GuestEntity guests) {
+    private boolean isDateOverlap(InputDateForm inputDateForm, OrderEntity order) {
+        //todo check
         boolean res;
-        if(inputDateForm.getCheckInDate().compareTo(guests.getCheckOutDate()) < 0 && guests.getCheckInDate().compareTo(inputDateForm.getCheckOutDate()) < 0){
+        if(inputDateForm.getCheckInDate().compareTo(order.getCheckInDate()) < 0 && order.getCheckInDate().compareTo(inputDateForm.getCheckOutDate()) < 0){
             //then overlap
             res = true;
         } else {

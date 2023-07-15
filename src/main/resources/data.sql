@@ -1,12 +1,12 @@
 -- init guest data for test
 
 INSERT INTO guest_table
-(name, room_num,age,gender,check_in_date,check_out_date)
+(name, age, gender)
 VALUES
-    ( 'Test1',202,36,'0','2023-07-10','2023-07-20'),
-    ( '高橋 誠',303,40,'1','2023-07-20','2023-07-25'),
-    ( '松野 学',206,6,'2','2023-07-19','2023-07-27'),
-    ( '大谷 竜也',401,1,'1','2023-08-01','2023-08-05')
+    ('Test1', 36, 0),
+    ('高橋 誠', 40, 1),
+    ('松野 学', 6, 2),
+    ('大谷 竜也', 1, 1)
 ;
 
 INSERT INTO room_table (room_num, floor, price, room_type, room_capacity, is_available)
@@ -31,6 +31,14 @@ VALUES
 ( 404,4,8000,'Twin',2,true)
 ;
 
+INSERT INTO order_table
+(guest_id, room_id, payment, price, check_in_date, check_out_date)
+VALUES
+    (1, 1, 'paid', 6000, '2023-07-10', '2023-07-20'),
+    (2, 3, 'unpaid', 6000, '2023-07-20', '2023-07-25'),
+    (3, 7, 'paid', 8000, '2023-07-19', '2023-07-27'),
+    (4, 4, 'unpaid', 6000, '2023-08-01', '2023-08-05')
+;
 
 INSERT INTO admin_table
 (admin_id, password, role)
