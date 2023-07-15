@@ -11,12 +11,12 @@ VALUES
 
 INSERT INTO room_table (room_num, floor, price, room_type, room_capacity, is_available)
 VALUES
-( 201,2,8000,'Single',1,true),
-( 202,2,8000,'Single',1,true),
-( 203,2,8000,'Single',1,true),
-( 204,2,8000,'Single',1,true),
-( 205,2,8000,'Single',1,true),
-( 206,2,8000,'Single',1,true),
+( 201,2,6000,'Single',1,true),
+( 202,2,6000,'Single',1,true),
+( 203,2,6000,'Single',1,true),
+( 204,2,6000,'Single',1,true),
+( 205,2,6000,'Single',1,true),
+( 206,2,6000,'Single',1,true),
 
 -- 4 double rooms on Floor 3
 ( 301,3,8000,'Double',2,true),

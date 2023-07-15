@@ -2,9 +2,11 @@ package com.example.hotelbookingweb.controllers;
 
 
 import com.example.hotelbookingweb.entities.GuestEntity;
+import com.example.hotelbookingweb.entities.OrderEntity;
 import com.example.hotelbookingweb.entities.RoomEntity;
 import com.example.hotelbookingweb.input_form.InputDateForm;
 import com.example.hotelbookingweb.services.GuestsService;
+import com.example.hotelbookingweb.services.OrdersService;
 import com.example.hotelbookingweb.services.RoomsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,7 @@ public class IndexController {
 
     private final RoomsService roomsService;
     private final GuestsService guestsService;
+    private final OrdersService ordersService;
 
     @GetMapping(HOME_PATH)
     public String index(@ModelAttribute InputDateForm inputDateForm, Model model, RedirectAttributes redirectAttributes) {
@@ -88,7 +91,8 @@ public class IndexController {
     }
 
     private List<RoomEntity> checkIsAvailable(List<RoomEntity> rooms, InputDateForm inputDateForm){
-        List<GuestEntity> guests = guestsService.findAllGuests();
+
+        List<OrderEntity> orders = .findAllGuests();
 
         for(int i = 0; i < guests.size(); i++){
             if(isDateOverlap(inputDateForm,guests.get(i))){
