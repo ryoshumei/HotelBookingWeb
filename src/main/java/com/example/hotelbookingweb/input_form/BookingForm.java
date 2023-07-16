@@ -23,7 +23,4 @@ public class BookingForm {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
     }
-
-    public BookingForm() {
-    }
 }

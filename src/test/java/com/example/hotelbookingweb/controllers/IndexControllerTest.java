@@ -3,8 +3,8 @@ package com.example.hotelbookingweb.controllers;
 import com.example.hotelbookingweb.WebSecurityConfig;
 import com.example.hotelbookingweb.entities.RoomEntity;
 import com.example.hotelbookingweb.input_form.InputDateForm;
-import com.example.hotelbookingweb.services.GuestsService;
-import com.example.hotelbookingweb.services.RoomsService;
+import com.example.hotelbookingweb.services.GuestsServiceImpl;
+import com.example.hotelbookingweb.services.RoomsServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +35,10 @@ class IndexControllerTest {
     MockMvc mockMvc;
 
     @MockBean
-    RoomsService roomsService;
+    RoomsServiceImpl roomsService;
 
     @MockBean
-    GuestsService guestsService;
+    GuestsServiceImpl guestsService;
 
     @Autowired
     ObjectMapper objectMapper;

@@ -3,8 +3,8 @@ package com.example.hotelbookingweb.controllers.users;
 import com.example.hotelbookingweb.WebSecurityConfig;
 import com.example.hotelbookingweb.input_form.BookingForm;
 import com.example.hotelbookingweb.input_form.InputDateForm;
-import com.example.hotelbookingweb.services.BookingService;
-import com.example.hotelbookingweb.services.GuestsService;
+import com.example.hotelbookingweb.services.BookingServiceImpl;
+import com.example.hotelbookingweb.services.GuestsServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -28,10 +28,10 @@ class RoomInfoControllerTest {
     MockMvc mockMvc;
 
     @MockBean
-    BookingService bookingService;
+    BookingServiceImpl bookingService;
 
     @MockBean
-    GuestsService guestsService;
+    GuestsServiceImpl guestsService;
 
     @Test
     void confirmBooking() throws Exception {

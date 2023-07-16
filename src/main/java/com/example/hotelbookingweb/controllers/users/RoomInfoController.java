@@ -1,11 +1,10 @@
 package com.example.hotelbookingweb.controllers.users;
 
-import com.example.hotelbookingweb.entities.GuestEntity;
 import com.example.hotelbookingweb.entities.OrderEntity;
 import com.example.hotelbookingweb.input_form.BookingForm;
 import com.example.hotelbookingweb.input_form.InputDateForm;
-import com.example.hotelbookingweb.services.BookingService;
-import com.example.hotelbookingweb.services.GuestsService;
+import com.example.hotelbookingweb.services.BookingServiceImpl;
+import com.example.hotelbookingweb.services.GuestsServiceImpl;
 import com.example.hotelbookingweb.services.OrdersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,21 +22,20 @@ public class RoomInfoController {
     public static final String ROOMS_INFORMATION_PATH = "/roomsInformation";
     public static final String CONFIRM_BOOKING_PATH = "/roomsInformation/confirmBooking";
 
-    private final BookingService bookingService;
-    private final GuestsService guestsService;
+    private final BookingServiceImpl bookingService;
     private final OrdersService ordersService;
 
 
     @PostMapping(CONFIRM_BOOKING_PATH)
     public String confirmBooking(Model model, @ModelAttribute BookingForm bookingForm, RedirectAttributes redirectAttributes){
         if(checkIsAvailable(bookingForm)){
-            bookingService.create(bookingForm);
+            bookingService.addOrder(bookingForm);
         } else {
             redirectAttributes.addFlashAttribute("hasConflict",true);
             return "redirect:/";
         }
 
-        System.out.println(bookingForm);
+        //System.out.println(bookingForm);
 
         model.addAttribute("bookingCompleteInfo",bookingForm);
         return "users/bookingComplete";

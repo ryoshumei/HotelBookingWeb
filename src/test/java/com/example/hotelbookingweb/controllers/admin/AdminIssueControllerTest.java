@@ -1,15 +1,13 @@
 package com.example.hotelbookingweb.controllers.admin;
 
-import com.example.hotelbookingweb.WebSecurityConfig;
 import com.example.hotelbookingweb.entities.GuestEntity;
-import com.example.hotelbookingweb.services.GuestsService;
-import com.example.hotelbookingweb.services.RoomsService;
+import com.example.hotelbookingweb.services.GuestsServiceImpl;
+import com.example.hotelbookingweb.services.RoomsServiceImpl;
 import com.example.hotelbookingweb.services.admin.AdminService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,9 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.hotelbookingweb.controllers.admin.AdminIssueController.CHECK_GUESTS_PATH;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -35,9 +31,9 @@ class AdminIssueControllerTest {
     MockMvc mockMvc;
 
     @MockBean
-    GuestsService guestsService;
+    GuestsServiceImpl guestsService;
     @MockBean
-    RoomsService roomsService;
+    RoomsServiceImpl roomsService;
     @MockBean
     AdminService adminService;
 

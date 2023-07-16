@@ -1,21 +1,22 @@
 package com.example.hotelbookingweb.controllers;
 
 
-import com.example.hotelbookingweb.entities.GuestEntity;
 import com.example.hotelbookingweb.entities.OrderEntity;
 import com.example.hotelbookingweb.entities.RoomEntity;
 import com.example.hotelbookingweb.input_form.InputDateForm;
-import com.example.hotelbookingweb.services.GuestsService;
+import com.example.hotelbookingweb.services.GuestsServiceImpl;
 import com.example.hotelbookingweb.services.OrdersService;
-import com.example.hotelbookingweb.services.RoomsService;
+import com.example.hotelbookingweb.services.RoomsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,9 +26,10 @@ import java.util.List;
 public class IndexController {
 
     public static final String HOME_PATH = "/";
+    public static final String ROOMS_PATH = "/rooms";
 
-    private final RoomsService roomsService;
-    private final GuestsService guestsService;
+    private final RoomsServiceImpl roomsService;
+    private final GuestsServiceImpl guestsService;
     private final OrdersService ordersService;
 
     @GetMapping(HOME_PATH)
@@ -42,24 +44,42 @@ public class IndexController {
 
         return "index";
     }
+    @GetMapping(ROOMS_PATH)
+    public String getRooms(Model model,@RequestParam() LocalDate checkIn, @RequestParam LocalDate checkOut){
 
-    @PostMapping(HOME_PATH)//todo : convert to GetMapping
-    public String searchRooms(@ModelAttribute InputDateForm inputDateForm, Model model){
-
+        //todo implement
         List<List<RoomEntity>> floors;
         List<RoomEntity> rooms = roomsService.findAllRooms();
-        rooms = checkIsAvailable(rooms,inputDateForm);
+        rooms = checkIsAvailable(rooms,checkIn,checkOut);
 
         //Divide list by floor
-        //Make a new LIST OF LIST
+        //Make a new List OF List
         //Then add it to model
         floors = divideByFloor(rooms);
         model.addAttribute("roomList", floors);
-        model.addAttribute("date", inputDateForm);
+        model.addAttribute("checkIn", checkIn);
+        model.addAttribute("checkOut", checkOut);
 
-        //DONE jump to roomsInformation.html
         return "users/roomsInformation";
     }
+
+//    @PostMapping(HOME_PATH)
+//    public String searchRooms(@ModelAttribute InputDateForm inputDateForm, Model model){
+//
+//        List<List<RoomEntity>> floors;
+//        List<RoomEntity> rooms = roomsService.findAllRooms();
+//        rooms = checkIsAvailable(rooms,inputDateForm);
+//
+//        //Divide list by floor
+//        //Make a new LIST OF LIST
+//        //Then add it to model
+//        floors = divideByFloor(rooms);
+//        model.addAttribute("roomList", floors);
+//        model.addAttribute("date", inputDateForm);
+//
+//        //DONE jump to roomsInformation.html
+//        return "users/roomsInformation";
+//    }
 
     private List<List<RoomEntity>> divideByFloor(List<RoomEntity> rooms){
         List<List<RoomEntity>> floors = new ArrayList<>();
@@ -90,12 +110,12 @@ public class IndexController {
         return floors;
     }
 
-    private List<RoomEntity> checkIsAvailable(List<RoomEntity> rooms, InputDateForm inputDateForm){
+    private List<RoomEntity> checkIsAvailable(List<RoomEntity> rooms, LocalDate checkIn, LocalDate checkOut){
 
         List<OrderEntity> orders = ordersService.findAllOrders();
 
         for(int i = 0; i < orders.size(); i++){
-            if(isDateOverlap(inputDateForm,orders.get(i))){
+            if(isDateOverlap(checkIn,checkOut,orders.get(i))){
                 //todo : find room and setAvailable false
                 int tempRoomNum = orders.get(i).getRoomId();
                 for(int j = 0; j < rooms.size(); j++){
@@ -109,10 +129,10 @@ public class IndexController {
         return rooms;
     }
 
-    private boolean isDateOverlap(InputDateForm inputDateForm, OrderEntity order) {
-        //todo check
+    private boolean isDateOverlap(LocalDate checkIn, LocalDate checkOut, OrderEntity order) {
+        //todo d-check
         boolean res;
-        if(inputDateForm.getCheckInDate().compareTo(order.getCheckInDate()) < 0 && order.getCheckInDate().compareTo(inputDateForm.getCheckOutDate()) < 0){
+        if(checkIn.compareTo(order.getCheckInDate()) < 0 && order.getCheckInDate().compareTo(checkOut) < 0){
             //then overlap
             res = true;
         } else {

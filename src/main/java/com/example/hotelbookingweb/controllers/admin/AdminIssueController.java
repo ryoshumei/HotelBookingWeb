@@ -1,7 +1,7 @@
 package com.example.hotelbookingweb.controllers.admin;
 
-import com.example.hotelbookingweb.services.GuestsService;
-import com.example.hotelbookingweb.services.RoomsService;
+import com.example.hotelbookingweb.services.GuestsServiceImpl;
+import com.example.hotelbookingweb.services.RoomsServiceImpl;
 import com.example.hotelbookingweb.services.admin.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,8 +19,8 @@ public class AdminIssueController {
     public static final String DELETE_GUEST_PATH = "/admin/checkGuests/delete/{id}";
 
 
-    private final GuestsService guestsService;
-    private final RoomsService roomsService;
+    private final GuestsServiceImpl guestsService;
+    private final RoomsServiceImpl roomsService;
     private final AdminService adminService;
 
 
