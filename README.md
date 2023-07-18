@@ -72,7 +72,8 @@ Caution: database will be reset every time you run this project because of the q
 ```mermaid
 erDiagram
     guest_table ||--o{ order_table : ""
-    order_table ||--|| room_table : ""
+    room_table ||--o{  order_table : ""
+    room_table o{--|| introduction_table : ""
     guest_table {
         int id PK
         string name
@@ -90,12 +91,17 @@ erDiagram
     }
     room_table {
         int id PK
+        int introduction_id FK
         int room_num
         int floor
         int price
         string room_type
         int room_capacity
         boolean is_available
+    }
+    introduction_table{
+        int id PK
+        string content
     }
     admin_table {
         int id PK

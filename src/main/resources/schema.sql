@@ -1,4 +1,5 @@
 -- if exist, then delete
+DROP TABLE IF EXISTS introduction_table;
 DROP TABLE IF EXISTS order_table;
 DROP TABLE IF EXISTS guest_table;
 DROP TABLE IF EXISTS room_table;
@@ -14,15 +15,23 @@ CREATE TABLE guest_table
     gender INT
 );
 
+CREATE TABLE introduction_table(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    content VARCHAR(512)
+)
+;
+
 CREATE TABLE room_table
 (
     id            INT AUTO_INCREMENT PRIMARY KEY,
+    introduction_id INT,
     room_num      INT,
     floor         INT,
     price         INT,
     room_type     VARCHAR(255),
     room_capacity INT,
-    is_available  BOOLEAN
+    is_available  BOOLEAN,
+    FOREIGN KEY (introduction_id) REFERENCES introduction_table (id)
 );
 
 CREATE TABLE order_table
