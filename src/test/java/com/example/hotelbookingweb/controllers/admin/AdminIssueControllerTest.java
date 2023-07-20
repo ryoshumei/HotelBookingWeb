@@ -40,7 +40,7 @@ class AdminIssueControllerTest {
     @Test
     @WithMockUser(roles = "ADMIN")
     void checkGuests() throws Exception {
-        GuestEntity guestEntity = new GuestEntity(1,"test",204,26,0, LocalDate.of(2023,3,28),LocalDate.of(2023,4,2));
+        GuestEntity guestEntity = new GuestEntity(1,"test",20,1);
         List<GuestEntity> guestEntityList = new ArrayList<>();
         guestEntityList.add(guestEntity);
 

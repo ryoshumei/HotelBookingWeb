@@ -15,19 +15,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @Controller
 @RequiredArgsConstructor
 public class BookingFormController {
 
     public static final String ROOMS_INFORMATION_PATH = "/roomsInformation";
-    public static final String CONFIRM_BOOKING_PATH = "/roomsInformation/confirmBooking";
+    public static final String BOOKING_FORM_PATH = "/roomsInformation/confirmBooking";
+    public static final String BOOKING_COMPLETE_PATH = "/roomsInformation/confirmBooking/complete";
 
     private final BookingServiceImpl bookingService;
-    private final OrdersService ordersService;
     private final DateCheckerService dateCheckerService;
 
-    @PostMapping(CONFIRM_BOOKING_PATH)
+    @PostMapping(BOOKING_FORM_PATH)
     public String confirmBooking(Model model, @ModelAttribute BookingForm bookingForm, RedirectAttributes redirectAttributes){
         if(dateCheckerService.checkIsAvailable(bookingForm)){
             bookingService.addOrder(bookingForm);
@@ -35,39 +36,23 @@ public class BookingFormController {
             redirectAttributes.addFlashAttribute("hasConflict",true);
             return "redirect:/";
         }
-
-        //System.out.println(bookingForm);
-
         model.addAttribute("bookingCompleteInfo",bookingForm);
         return "users/bookingComplete";
     }
 
-    @GetMapping(ROOMS_INFORMATION_PATH)
-    public String showRooms(@RequestParam("checkInDate") String checkInDate,
+    @GetMapping(BOOKING_FORM_PATH)
+    public String getBookingForm(Model model,
+                            @RequestParam("checkInDate") String checkInDate,
                             @RequestParam("checkOutDate") String checkOutDate,
-                            @RequestParam("roomNum") int roomNum,
+                            @RequestParam("roomNum") ArrayList<Integer> roomNums,
                             @RequestParam(value = "numOfPeople",required = false) int numOfPeople,
-                            Model model,
                             @ModelAttribute InputDateForm inputDateForm,
                             @ModelAttribute BookingForm bookingForm){
 
-
         inputDateForm.setCheckInDate(LocalDate.parse(checkInDate));
         inputDateForm.setCheckOutDate(LocalDate.parse(checkOutDate));
-        //inputDateForm.setNumOfPeople(numOfPeople);
-
-
-        //test
-        /*
-        System.out.println(inputDateForm.getCheckInDate());
-        System.out.println(inputDateForm.getCheckOutDate());
-        System.out.println(inputDateForm.getNumOfPeople());
-        */
-        //end test
-
-        //model.addAttribute("numOfPeople", numOfPeople);
         model.addAttribute("date", inputDateForm);
-        model.addAttribute("roomNum", roomNum);
+        model.addAttribute("roomNum", roomNums);
 
         return "users/guestBookingForm";
     }

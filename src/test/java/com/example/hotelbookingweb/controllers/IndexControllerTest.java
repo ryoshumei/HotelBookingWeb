@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.hotelbookingweb.controllers.IndexController.HOME_PATH;
+import static com.example.hotelbookingweb.controllers.users.RoomInfoController.ROOMS_PATH;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -58,26 +59,4 @@ class IndexControllerTest {
 
     }
 
-    @Test
-    void searchRooms() throws Exception {
-
-        InputDateForm inputDateForm = new InputDateForm(LocalDate.of(2023,3,28),LocalDate.of(2023,4,2));
-
-        List<RoomEntity> rooms = new ArrayList<>();
-        RoomEntity testRoom = new RoomEntity(1,201,2,"Twin",2,true);
-        rooms.add(testRoom);
-
-        given(roomsService.findAllRooms()).willReturn(rooms);
-
-        mockMvc.perform(post(HOME_PATH)
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .flashAttr("inputDateForm", inputDateForm)
-                        .with(SecurityMockMvcRequestPostProcessors.csrf()))
-                .andExpect(view().name("users/roomsInformation"))
-                .andExpect(status().isOk());
-
-
-
-
-    }
 }
