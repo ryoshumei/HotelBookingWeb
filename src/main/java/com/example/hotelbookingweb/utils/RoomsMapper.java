@@ -19,7 +19,6 @@ public class RoomsMapper {
         //System.out.println(tempRooms.isEmpty());
         for(int i = 0; i < rooms.size(); i++){
             //cast to RoomToShow Class
-
             if(rooms.get(i).getFloor() == curFloor){
                 tempRooms.add(rooms.get(i));
             } else {
@@ -33,7 +32,7 @@ public class RoomsMapper {
             floors.add(tempRooms);
         }
 
-        // Reverse the list to make it looks like from floor 4 ~ floor 2
+        // Reverse the list to make it looks like floor 4 ~ floor 2
         Collections.reverse(floors);
         return floors;
     }

@@ -2,6 +2,7 @@ package com.example.hotelbookingweb.controllers.users;
 
 import com.example.hotelbookingweb.entities.RoomEntity;
 import com.example.hotelbookingweb.services.DateCheckerService;
+import com.example.hotelbookingweb.services.RoomsService;
 import com.example.hotelbookingweb.services.RoomsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,17 +19,16 @@ import static com.example.hotelbookingweb.utils.RoomsMapper.divideByFloor;
 @RequiredArgsConstructor
 public class RoomInfoController {
 
-    public static final String ROOMS_PATH = "/rooms";
+    public static final String ROOMS_PATH = "/roomsInformation";
 
-    private final RoomsServiceImpl roomsService;
+    private final RoomsService roomsService;
     private final DateCheckerService dateCheckerService;
 
     @GetMapping(ROOMS_PATH)
-    public String getRooms(Model model,@RequestParam() LocalDate checkIn, @RequestParam LocalDate checkOut){
-
-        //todo implement
+    public String getRooms(Model model,@RequestParam LocalDate checkIn, @RequestParam LocalDate checkOut){
+        // todo done
         List<List<RoomEntity>> floors;
-        List<RoomEntity> rooms = roomsService.findAllRooms();//todo not rooms is orders
+        List<RoomEntity> rooms = roomsService.findAllRooms();
         rooms = dateCheckerService.checkIsAvailable(rooms,checkIn,checkOut);
 
         //Divide list by floor
