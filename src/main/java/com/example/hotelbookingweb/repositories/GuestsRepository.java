@@ -14,7 +14,7 @@ public interface GuestsRepository {
 
     @Insert("INSERT INTO my_hotel_web.guest_table (name, age, gender) VALUES (#{name}, #{age}, #{gender})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    void insertGuest(String name, int age, int gender);
+    void insertGuest(GuestEntity guestEntity);
 
     @Delete("delete from my_hotel_web.guest_table where id = #{id}")
     void deleteById(int id);
