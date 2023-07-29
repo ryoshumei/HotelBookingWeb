@@ -23,13 +23,13 @@ public class BookingFormController {
 
     public static final String ROOMS_INFORMATION_PATH = "/roomsInformation";
     public static final String BOOKING_FORM_PATH = "/roomsInformation/confirmBooking";
-    public static final String BOOKING_COMPLETE_PATH = "/roomsInformation/confirmBooking/complete";
 
     private final BookingServiceImpl bookingService;
     private final DateCheckerService dateCheckerService;
 
     @PostMapping(BOOKING_FORM_PATH)
     public String confirmBooking(Model model, @ModelAttribute BookingForm bookingForm, RedirectAttributes redirectAttributes){
+        System.out.println(bookingForm);
         if(dateCheckerService.checkIsAvailable(bookingForm)){
             bookingService.addOrder(bookingForm);
         } else {
@@ -45,7 +45,7 @@ public class BookingFormController {
                             @RequestParam("checkInDate") String checkInDate,
                             @RequestParam("checkOutDate") String checkOutDate,
                             @RequestParam("roomNum") ArrayList<Integer> roomNums,
-                            @RequestParam(value = "numOfPeople",required = false) int numOfPeople,
+                            @RequestParam(value = "numOfPeople",required = false) Integer numOfPeople,
                             @ModelAttribute InputDateForm inputDateForm,
                             @ModelAttribute BookingForm bookingForm){
 

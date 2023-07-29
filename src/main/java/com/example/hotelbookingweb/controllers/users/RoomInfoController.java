@@ -3,7 +3,6 @@ package com.example.hotelbookingweb.controllers.users;
 import com.example.hotelbookingweb.entities.RoomEntity;
 import com.example.hotelbookingweb.services.DateCheckerService;
 import com.example.hotelbookingweb.services.RoomsService;
-import com.example.hotelbookingweb.services.RoomsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,19 +24,19 @@ public class RoomInfoController {
     private final DateCheckerService dateCheckerService;
 
     @GetMapping(ROOMS_PATH)
-    public String getRooms(Model model,@RequestParam LocalDate checkIn, @RequestParam LocalDate checkOut){
+    public String getRooms(Model model, @RequestParam LocalDate checkInDate, @RequestParam LocalDate checkOutDate){
 
         List<List<RoomEntity>> floors;
         List<RoomEntity> rooms = roomsService.findAllRooms();
-        rooms = dateCheckerService.checkIsAvailable(rooms,checkIn,checkOut);
+        rooms = dateCheckerService.checkIsAvailable(rooms, checkInDate, checkOutDate);
 
         //Divide list by floor
         //Make a new List OF List
         //Then add it to model
         floors = divideByFloor(rooms);
         model.addAttribute("roomList", floors);
-        model.addAttribute("checkIn", checkIn);
-        model.addAttribute("checkOut", checkOut);
+        model.addAttribute("checkInDate", checkInDate);
+        model.addAttribute("checkOutDate", checkOutDate);
 
         return "users/roomsInformation";
     }

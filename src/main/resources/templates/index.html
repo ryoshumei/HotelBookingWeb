@@ -15,7 +15,7 @@
 
 <p class="text-danger" th:text="${hasConflict}? 'Something went wrong , Please try again.' : ''"></p>
 
-<form action="#" th:action="@{/}" th:method="post" th:object="${inputDateForm}" class="row g-2 align-items-center needs-validation" novalidate>
+<form action="#" th:action="@{/roomsInformation}" th:method="get" th:object="${inputDateForm}" class="row g-2 align-items-center needs-validation" novalidate>
 
         <div class="col-auto">
             <label for="check_in" class="col-form-label">Check in:</label>

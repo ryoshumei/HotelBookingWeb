@@ -19,13 +19,7 @@
 }
 
 .check_detail_btn{
-    /*display: flex;*/
-    /*flex-direction: row;*/
     z-index: 2;
-}
-
-#book{
-
 }
 
 .card.active #book{

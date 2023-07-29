@@ -37,7 +37,6 @@ public class IndexController {
         if(hasConflict){
             model.addAttribute("hasConflict", true);
         }
-
         return "index";
     }
 }
