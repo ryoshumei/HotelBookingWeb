@@ -3,7 +3,7 @@ package com.example.hotelbookingweb.controllers.admin;
 import com.example.hotelbookingweb.entities.GuestEntity;
 import com.example.hotelbookingweb.services.GuestsServiceImpl;
 import com.example.hotelbookingweb.services.RoomsServiceImpl;
-import com.example.hotelbookingweb.services.admin.AdminService;
+import com.example.hotelbookingweb.services.admin.AdminIssueService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -14,7 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +34,7 @@ class AdminIssueControllerTest {
     @MockBean
     RoomsServiceImpl roomsService;
     @MockBean
-    AdminService adminService;
+    AdminIssueService adminService;
 
     @Test
     @WithMockUser(roles = "ADMIN")

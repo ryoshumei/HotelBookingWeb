@@ -11,6 +11,11 @@ let clickedBackBtn
 // Get all "Select" buttons
 const selectButtons = document.querySelectorAll('.select-room')
 
+// Clear sessionStorage on page refresh
+window.onload = function() {
+    sessionStorage.clear();
+};
+
 for(let i = 0; i < roomInfoBtnsLength; i++){
     roomInfoBtns[i].addEventListener("click", function (){
         console.log("roomInfoBtn clicked")

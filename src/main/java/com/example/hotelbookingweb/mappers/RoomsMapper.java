@@ -1,4 +1,4 @@
-package com.example.hotelbookingweb.utils;
+package com.example.hotelbookingweb.mappers;
 
 import com.example.hotelbookingweb.entities.RoomEntity;
 

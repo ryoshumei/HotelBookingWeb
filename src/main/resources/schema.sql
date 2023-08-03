@@ -1,4 +1,5 @@
 -- if exist, then delete
+DROP TABLE IF EXISTS deleted_order_table;
 DROP TABLE IF EXISTS order_table;
 DROP TABLE IF EXISTS guest_table;
 DROP TABLE IF EXISTS room_table;
@@ -42,6 +43,21 @@ CREATE TABLE order_table
     price          INT,
     check_in_date  DATE,
     check_out_date DATE,
+    FOREIGN KEY (guest_id) REFERENCES guest_table (id),
+    FOREIGN KEY (room_id) REFERENCES room_table (id)
+);
+
+CREATE TABLE deleted_order_table
+(
+    id             INT AUTO_INCREMENT PRIMARY KEY,
+    order_id       INT,
+    guest_id       INT,
+    room_id        INT,
+    payment        ENUM ('paid', 'unpaid'),
+    price          INT,
+    check_in_date  DATE,
+    check_out_date DATE,
+    deleted_date_time DATETIME,
     FOREIGN KEY (guest_id) REFERENCES guest_table (id),
     FOREIGN KEY (room_id) REFERENCES room_table (id)
 );

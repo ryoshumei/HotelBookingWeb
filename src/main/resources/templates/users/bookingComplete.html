@@ -28,7 +28,11 @@
         <th th:text="${bookingCompleteInfo.name}">(name)</th>
         <th th:text="${bookingCompleteInfo.roomNum}">(roomNum)</th>
         <th th:text="${bookingCompleteInfo.age}">(age)</th>
-        <th th:text="${bookingCompleteInfo.gender}">(gender)</th>
+        <th th:switch="${bookingCompleteInfo.gender}">
+            <span th:case="0">Male</span>
+            <span th:case="1">Female</span>
+            <span th:case="2">Others</span>
+        </th>
         <th th:text="${bookingCompleteInfo.checkInDate}">(checkin_date)</th>
         <th th:text="${bookingCompleteInfo.checkOutDate}">(checkout_date)</th>
 

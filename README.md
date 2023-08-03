@@ -73,6 +73,7 @@ Caution: database will be reset every time you run this project because of the q
 erDiagram
     guest_table ||--o{ order_table : ""
     room_table ||--o{  order_table : ""
+    guest_table ||--o{  deleted_order_table : ""
     room_table o{--|| introduction_table : ""
     guest_table {
         int id PK
@@ -88,6 +89,16 @@ erDiagram
         int price
         date check_in_date
         date check_out_date
+    }
+    deleted_order_table{
+        int id PK
+        int guest_id FK
+        int room_id FK
+        enum payment "paid/unpaid"
+        int price
+        date check_in_date
+        date check_out_date
+        datetime deleted_datetime
     }
     room_table {
         int id PK
