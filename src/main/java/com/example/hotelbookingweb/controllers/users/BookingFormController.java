@@ -48,9 +48,10 @@ public class BookingFormController {
                             @RequestParam(value = "numOfPeople",required = false) Integer numOfPeople,
                             @ModelAttribute InputDateForm inputDateForm,
                             @ModelAttribute BookingForm bookingForm){
-
+        bookingForm.setGender(1);
         inputDateForm.setCheckInDate(LocalDate.parse(checkInDate));
         inputDateForm.setCheckOutDate(LocalDate.parse(checkOutDate));
+        model.addAttribute("bookingForm",bookingForm);
         model.addAttribute("date", inputDateForm);
         model.addAttribute("roomNum", roomNums);
 

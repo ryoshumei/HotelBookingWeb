@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.example.hotelbookingweb.utils.RoomsMapper.divideByFloor;
+import static com.example.hotelbookingweb.mappers.RoomsMapper.divideByFloor;
 
 @Controller
 @RequiredArgsConstructor

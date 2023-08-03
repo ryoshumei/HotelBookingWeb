@@ -37,21 +37,21 @@
         <label for="gender" class="form-label">Gender</label>
         <div id="gender">
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="genderRadios" id="male" th:field="*{gender}" value="0">
+                <input class="form-check-input" type="radio" id="male" th:field="*{gender}" value="0">
                 <label class="form-check-label" for="male">
                     Male
                 </label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="genderRadios" id="female" th:field="*{gender}" value="1" checked>
+                <input class="form-check-input" type="radio" id="female" th:field="*{gender}" value="1">
                 <label class="form-check-label" for="female">
                     Female
                 </label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="genderRadios" id="others" th:field="*{gender}" value="2">
+                <input class="form-check-input" type="radio" id="others" th:field="*{gender}" value="2">
                 <label class="form-check-label" for="others">
                     Others
                 </label>
@@ -88,12 +88,13 @@
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
                 form.querySelectorAll('.form-control').forEach(function(element){
-                    age = document.getElementById('age')
                     if(isNaN(age.value)){
                         age.classList.add('is-invalid')
                         event.preventDefault()
                         event.stopPropagation()
                     }
+
+
 
                     if(element.value.length == 0){
                         element.classList.add('is-invalid')
