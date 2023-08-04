@@ -1,8 +1,6 @@
 package com.example.hotelbookingweb.repositories;
 
 import com.example.hotelbookingweb.entities.DeletedOrderEntity;
-import com.example.hotelbookingweb.entities.GuestEntity;
-import com.example.hotelbookingweb.entities.OrderEntity;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;

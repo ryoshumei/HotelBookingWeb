@@ -1,10 +1,8 @@
 package com.example.hotelbookingweb.repositories;
 
 import com.example.hotelbookingweb.entities.GuestEntity;
-import com.example.hotelbookingweb.entities.RoomEntity;
 import org.apache.ibatis.annotations.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Mapper
