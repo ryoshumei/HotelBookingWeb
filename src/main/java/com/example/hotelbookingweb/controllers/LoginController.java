@@ -14,9 +14,4 @@ public class LoginController {
         return "admin/logIn";
     }
 
-    /*@GetMapping("admin/logout")
-    @ResponseBody
-    String logout() {
-        return "login";
-    }*/
 }

@@ -1,97 +1,44 @@
 package com.example.hotelbookingweb.controllers.users;
 
-import com.example.hotelbookingweb.entities.GuestEntity;
-import com.example.hotelbookingweb.input_form.BookingForm;
-import com.example.hotelbookingweb.input_form.InputDateForm;
-import com.example.hotelbookingweb.services.BookingService;
-import com.example.hotelbookingweb.services.GuestsService;
+import com.example.hotelbookingweb.entities.RoomEntity;
+import com.example.hotelbookingweb.services.DateCheckerService;
+import com.example.hotelbookingweb.services.RoomsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import java.time.LocalDate;
 import java.util.List;
+
+import static com.example.hotelbookingweb.mappers.RoomsMapper.divideByFloor;
 
 @Controller
 @RequiredArgsConstructor
 public class RoomInfoController {
 
-    public static final String ROOMS_INFORMATION_PATH = "/roomsInformation";
-    public static final String CONFIRM_BOOKING_PATH = "/roomsInformation/confirmBooking";
+    public static final String ROOMS_PATH = "/roomsInformation";
 
-    private final BookingService bookingService;
-    private final GuestsService guestsService;
+    private final RoomsService roomsService;
+    private final DateCheckerService dateCheckerService;
 
+    @GetMapping(ROOMS_PATH)
+    public String getRooms(Model model, @RequestParam LocalDate checkInDate, @RequestParam LocalDate checkOutDate){
 
-    @PostMapping(CONFIRM_BOOKING_PATH)
-    public String confirmBooking(Model model, @ModelAttribute BookingForm bookingForm, RedirectAttributes redirectAttributes){
-        if(checkIsAvailable(bookingForm)){
-            bookingService.create(bookingForm);
-        } else {
-            redirectAttributes.addFlashAttribute("hasConflict",true);
-            return "redirect:/";
-        }
+        List<List<RoomEntity>> floors;
+        List<RoomEntity> rooms = roomsService.findAllRooms();
+        rooms = dateCheckerService.checkIsAvailable(rooms, checkInDate, checkOutDate);
 
-        System.out.println(bookingForm);
+        //Divide list by floor
+        //Make a new List OF List
+        //Then add it to model
+        floors = divideByFloor(rooms);
+        model.addAttribute("roomList", floors);
+        model.addAttribute("checkInDate", checkInDate);
+        model.addAttribute("checkOutDate", checkOutDate);
 
-        model.addAttribute("bookingCompleteInfo",bookingForm);
-        return "users/bookingComplete";
-    }
-
-    @GetMapping(ROOMS_INFORMATION_PATH)
-    public String showRooms(@RequestParam("checkInDate") String checkInDate,
-                            @RequestParam("checkOutDate") String checkOutDate,
-                            @RequestParam("roomNum") int roomNum,
-                            @RequestParam("numOfPeople") int numOfPeople,
-                            Model model,
-                            @ModelAttribute InputDateForm inputDateForm,
-                            @ModelAttribute BookingForm bookingForm){
-
-
-        inputDateForm.setCheckInDate(LocalDate.parse(checkInDate));
-        inputDateForm.setCheckOutDate(LocalDate.parse(checkOutDate));
-        inputDateForm.setNumOfPeople(numOfPeople);
-
-
-        //test
-        /*
-        System.out.println(inputDateForm.getCheckInDate());
-        System.out.println(inputDateForm.getCheckOutDate());
-        System.out.println(inputDateForm.getNumOfPeople());
-        */
-        //end test
-
-        model.addAttribute("numOfPeople", numOfPeople);
-        model.addAttribute("date", inputDateForm);
-        model.addAttribute("roomNum", roomNum);
-
-        return "users/guestBookingForm";
-    }
-
-    private boolean checkIsAvailable(BookingForm bookingForm){
-        List<GuestEntity> guests = guestsService.findAllGuests();
-
-        for(int i = 0; i < guests.size(); i++){
-            if(bookingForm.getRoomNum() == guests.get(i).getRoomNum() && isDateOverlap(bookingForm,guests.get(i))){
-                return false;
-            }
-
-        }
-        return true;
-
-    }
-
-    private boolean isDateOverlap(BookingForm inputDateForm, GuestEntity guests) {
-        boolean res;
-        if(inputDateForm.getCheckInDate().compareTo(guests.getCheckOutDate()) < 0 && guests.getCheckInDate().compareTo(inputDateForm.getCheckOutDate()) < 0){
-            //then overlap
-            res = true;
-        } else {
-            res = false;
-        }
-        return res;
+        return "users/roomsInformation";
     }
 
 }

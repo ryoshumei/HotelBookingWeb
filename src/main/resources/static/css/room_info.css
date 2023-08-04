@@ -19,18 +19,10 @@
 }
 
 .check_detail_btn{
-    /*display: flex;*/
-    /*flex-direction: row;*/
     z-index: 2;
 }
 
-#book{
-    /*display: none;*/
-}
-
 .card.active #book{
-    /*display: block;*/
-    /*margin-left: 600px;*/
 }
 
 .card.active .room_content{
@@ -49,11 +41,6 @@
     display: none;
 }
 .card.active .check_detail_btn{
-    /*position: fixed;*/
-    /*top: 50%;*/
-    /*left: 30%;*/
-
-    /*transform: translateY(230px);*/
     display: none;
 }
 

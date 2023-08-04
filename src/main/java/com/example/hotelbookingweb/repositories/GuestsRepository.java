@@ -1,23 +1,19 @@
 package com.example.hotelbookingweb.repositories;
 
 import com.example.hotelbookingweb.entities.GuestEntity;
-import com.example.hotelbookingweb.entities.RoomEntity;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Mapper
 public interface GuestsRepository {
-    @Select("select * from my_hotel_web.guesttable")
+    @Select("select * from my_hotel_web.guest_table")
     List<GuestEntity> findAllGuests();
 
-    @Insert("insert into my_hotel_web.guesttable (name, room_num, age, gender, check_in_date, check_out_date) VALUES (#{name}, #{roomNum}, #{age}, #{gender}, #{checkInDate}, #{checkOutDate})")
-    void insert(String name, int roomNum, Integer age, int gender, LocalDate checkInDate, LocalDate checkOutDate);
+    @Insert("INSERT INTO my_hotel_web.guest_table (name, age, gender) VALUES (#{name}, #{age}, #{gender})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    void insertGuest(GuestEntity guestEntity);
 
-    @Delete("delete from my_hotel_web.guesttable where id = #{id}")
+    @Delete("delete from my_hotel_web.guest_table where id = #{id}")
     void deleteById(int id);
 }

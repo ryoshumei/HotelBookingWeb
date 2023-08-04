@@ -15,7 +15,7 @@
 
 <p class="text-danger" th:text="${hasConflict}? 'Something went wrong , Please try again.' : ''"></p>
 
-<form action="#" th:action="@{/}" th:method="post" th:object="${inputDateForm}" class="row g-2 align-items-center needs-validation" novalidate>
+<form action="#" th:action="@{/roomsInformation}" th:method="get" th:object="${inputDateForm}" class="row g-2 align-items-center needs-validation" novalidate>
 
         <div class="col-auto">
             <label for="check_in" class="col-form-label">Check in:</label>
@@ -41,13 +41,13 @@
             </div>
         </div>
 
-        <div class="col-auto ">
-            <label for="num_of_people" class="col-form-label">Travelers:</label>
-            <select class="form-select ms-0" aria-label="Default select example" id="num_of_people" th:field="*{numOfPeople}">
-                <option value="1">1</option>
-                <option value="2">2</option>
-            </select>
-        </div>
+<!--        <div class="col-auto ">-->
+<!--            <label for="num_of_people" class="col-form-label">Travelers:</label>-->
+<!--            <select class="form-select ms-0" aria-label="Default select example" id="num_of_people" th:field="*{numOfPeople}">-->
+<!--                <option value="1">1</option>-->
+<!--                <option value="2">2</option>-->
+<!--            </select>-->
+<!--        </div>-->
 
         <div class="col-auto ms-5 mt-5">
             <button type="submit" class="btn btn-primary">Search</button>

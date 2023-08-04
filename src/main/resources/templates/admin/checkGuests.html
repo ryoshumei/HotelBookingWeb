@@ -12,30 +12,46 @@
 <table class="table">
   <thead>
   <tr>
-    <th>ID</th>
+    <th>ORDER ID</th>
     <th>NAME</th>
     <th>ROOM NUMBER</th>
+    <th>ROOM TYPE</th>
     <th>AGE</th>
     <th>GENDER</th>
     <th>CHECK_IN</th>
     <th>CHECK_OUT</th>
+    <th>PRICE</th>
+    <th>PAYMENT</th>
   </tr>
   </thead>
   <tbody>
   <tr th:each="guest : ${guestsList}" >
-    <th th:text="${guest.id}">(id)</th>
+    <th th:text="${guest.orderId}">(id)</th>
     <th th:text="${guest.name}">(name)</th>
     <th th:text="${guest.roomNum}">(roomNum)</th>
+    <th th:text="${guest.roomType}">(roomType)</th>
     <th th:text="${guest.age}">(age)</th>
-    <th th:text="${guest.gender}">(gender)</th>
+    <th th:switch="${guest.gender}">
+      <span th:case="0">Male</span>
+      <span th:case="1">Female</span>
+      <span th:case="2">Others</span>
+    </th>
     <th th:text="${guest.checkInDate}">(checkin_date)</th>
     <th th:text="${guest.checkOutDate}">(checkout_date)</th>
+    <th th:text="${guest.price}">(price)</th>
+    <th th:text="${guest.payment}">(payment)</th>
     <th>
-      <form th:method="post" th:action="@{/admin/checkGuests/delete/{id} (id=${guest.id})}">
+      <form th:method="patch" th:action="@{/admin/checkGuests/updatePayment/{id} (id=${guest.orderId})}">
+        <button class="btn btn-primary ms-2" >Paid</button>
+      </form>
+    </th>
+    <th>
+      <form th:method="post" th:action="@{/admin/checkGuests/delete/{id} (id=${guest.orderId})}">
         <button class="btn btn-secondary ms-2" >Delete</button>
       </form>
 
     </th>
+
 
   </tr>
 
