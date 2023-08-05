@@ -11,9 +11,9 @@ import java.util.Optional;
 @Mapper
 public interface AdminRepository {
 
-    @Select("select * from my_hotel_web.admin_table")
+    @Select("select * from admin_table")
     List<AdminEntity> findAllAdmins();
 
-    @Select("select * from my_hotel_web.admin_table where admin_id = #{username}")
+    @Select("select * from admin_table where admin_id = #{username}")
     Optional<AdminEntity> findByUsername(String username);
 }

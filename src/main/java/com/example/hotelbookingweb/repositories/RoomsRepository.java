@@ -8,11 +8,11 @@ import java.util.List;
 
 @Mapper
 public interface RoomsRepository {
-    @Select("select * from my_hotel_web.room_table")
+    @Select("select * from room_table")
     List<RoomEntity> findAllRooms();
 
     @Select({"<script>",
-            "select * from my_hotel_web.room_table where room_num in ",
+            "select * from room_table where room_num in ",
             "<foreach item='item' index='index' collection='list' open='(' separator=',' close=')'>",
             "#{item}",
             "</foreach>",

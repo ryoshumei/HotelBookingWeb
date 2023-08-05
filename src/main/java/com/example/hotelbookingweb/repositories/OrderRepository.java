@@ -35,6 +35,6 @@ public interface OrderRepository {
     @ResultMap("OrderResult")
     List<OrderEntity> getAll();
 
-    @Insert("INSERT INTO my_hotel_web.order_table (guest_id, room_id, payment, price, check_in_date, check_out_date) VALUES (#{guestId}, #{roomId}, #{payment}, #{price}, #{checkInDate}, #{checkOutDate})")
+    @Insert("INSERT INTO order_table (guest_id, room_id, payment, price, check_in_date, check_out_date) VALUES (#{guestId}, #{roomId}, #{payment}, #{price}, #{checkInDate}, #{checkOutDate})")
     void insertOrder(OrderEntity orderEntity);
 }
