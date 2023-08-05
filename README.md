@@ -1,5 +1,16 @@
 # HotelBookingWeb
 
+## DEMO
+For users : https://my-hotel-booking-web-demo-109abf397a96.herokuapp.com/
+
+For admin : https://my-hotel-booking-web-demo-109abf397a96.herokuapp.com/admin/logIn
+
+Demo ID&Password 
+
+Admin ID : test1  
+
+Password : test1
+
 ## Table of Contents
 
 1. [Description](#description)
