@@ -34,7 +34,9 @@ dependencies {
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 }
 
-
+application {
+    mainClassName = 'com.example.hotelbookingweb.HotelBookingWebApplication'
+}
 
 tasks.named('test') {
     useJUnitPlatform()
