@@ -1,4 +1,5 @@
 -- if exist, then delete
+SELECT @@auto_increment_increment;
 DROP TABLE IF EXISTS deleted_order_table;
 DROP TABLE IF EXISTS order_table;
 DROP TABLE IF EXISTS guest_table;
