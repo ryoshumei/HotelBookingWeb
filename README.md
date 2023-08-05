@@ -96,7 +96,7 @@ This is a Gradle project, you can use "build.gradle" to import the project.
 
 1. Clone the repository to your local machine.
 
-2. Edit the database connection settings in "src/main/resources/application.properties" to match your environment.
+2. Edit the database connection settings in 'src/main/resources/application.properties' or set them as Environment Variables to match your local environment.
 
 3. The default port is 8090. This can be changed in "application.properties" if desired.
 
