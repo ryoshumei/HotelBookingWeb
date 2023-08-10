@@ -1,6 +1,9 @@
 # HotelBookingWeb
 
 ## DEMO
+
+Due to Heroku's specifications, the server may take several seconds(about 30s) to start when it is in a dormant state.
+
 For users : https://my-hotel-booking-web-demo-109abf397a96.herokuapp.com/
 
 For admin : https://my-hotel-booking-web-demo-109abf397a96.herokuapp.com/admin/logIn
